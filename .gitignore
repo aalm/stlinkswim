@@ -1,2 +1,11 @@
 .pio
 .vscode
+*.bin
+*.hex
+*.d
+*.elf
+*.map
+*.o
+*.elf
+src/version.h
+src/mapfile

@@ -1,7 +1,8 @@
 /*
  * This file is part of the Black Magic Debug project.
  *
- * Copyright (C) 2015 Gareth McMullin <gareth@blacksphere.co.nz>
+ * Copyright (C) 2012  Black Sphere Technologies Ltd.
+ * Written by Gareth McMullin <gareth@blacksphere.co.nz>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,23 +17,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef __TIMING_STM32_H
-#define __TIMING_STM32_H
+#ifndef __USBUART_H
+#define __USBUART_H
 
-// voor de inline delayus
-#include <libopencm3/cm3/systick.h>
+#include <libopencm3/usb/usbd.h>
+#include <libopencm3/usb/cdc.h>
 
-struct platform_timeout {
-	uint32_t time;
-};
+void usbuart_init(void);
 
-typedef struct platform_timeout platform_timeout;
-
-void platform_timing_init(void);
-void platform_timeout_set(platform_timeout *t, uint32_t ms);
-bool platform_timeout_is_expired(platform_timeout *t);
-void platform_delay(uint32_t ms);
-uint32_t platform_time_ms(void);
+void usbuart_set_line_coding(struct usb_cdc_line_coding *coding);
+void usbuart1_usb_out_cb(usbd_device *dev, uint8_t ep);
+void usbuart_usb_in_cb(usbd_device *dev, uint8_t ep);
 
 #endif
-

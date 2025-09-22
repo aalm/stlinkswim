@@ -1,13 +1,15 @@
-# ST-LINK SWIM interface
+# ST-LINK SWIM interface with USB CDCACM bridge to USART2
 
-- a basic implementation of the STM8 SWIM protocol running on STM32 (Bluepill or other)  
-- On the USB side the code behaves like a ST-LINK v2  
-- It is also pin compatible with ST-LINK v2 and the chinese clones  
-- With this code you can turn a Bluepill into a SWIM probe for flashing & debugging a STM8. 
+- a basic implementation of the STM8 SWIM protocol running on STM32 (Bluepill or other)
+- On the USB side the code behaves like a ST-LINK v2
+- It is also pin compatible with ST-LINK v2 and the chinese clones
+- With this code you can turn a Bluepill into a SWIM probe for flashing & debugging a STM8.
 - Or you could flash it into a ST-LINK directly, and enjoy the fact that it now runs on open source firmware.
-- The setup has been tested with stm8flash & openocd  
+- The setup has been tested with stm8flash & cu(github.com/tobhe/opencu) on a raspberry pi 5 running trixie
 
 ## Connections
+- TX : PA9
+- RX : PA10
 - RST : PB6
 - SWIM_IN : PB7
 - SWIM_OUT : PB11
@@ -26,3 +28,4 @@ use platformio for building & flashing to a STM32 target.
 - add target voltage sense
 - USB DFU version compatible with STLINK bootloader
 - vague plans to integrate STM8 with black magic probe, if I find the time ..
+- finish cleaning up the addition of usb2uart-serial bridge
